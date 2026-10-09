@@ -133,6 +133,30 @@ vercel --prod   # production deployment
    - `robots.txt`
 3. Submit `sitemap.xml` through Google Search Console.
 
+### Google Search Console
+
+The site carries a verification meta tag in every page's `<head>`:
+
+```html
+<meta name="google-site-verification" content="y5hjlefByO8rSD1HvEyz4yO1it33WcrWJiezWzdtrhw">
+```
+
+**Important:** a `*.vercel.app` subdomain cannot be verified as a *Domain property*, because
+that needs a DNS TXT record on `vercel.app`, which Vercel owns and you cannot edit. Use a
+**URL prefix property** instead:
+
+1. Search Console → Add property → **URL prefix**
+2. Enter `https://leaderdigitalmedia.vercel.app`
+3. Choose the **HTML tag** method
+4. If the token it shows differs from the one above, replace it in all `.html` files:
+   ```bash
+   sed -i '' 's/content="y5hjlefByO8rSD1HvEyz4yO1it33WcrWJiezWzdtrhw"/content="NEW_TOKEN"/' *.html
+   ```
+5. Redeploy, then press Verify
+
+Once you attach a custom domain you own, Domain-property DNS verification becomes available
+and is the better option.
+
 ### Other hosts
 
 Being plain static files, the site also runs on cPanel shared hosting (upload to
