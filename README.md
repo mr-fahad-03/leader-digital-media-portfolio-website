@@ -36,7 +36,6 @@ These are stand-in values. Search and replace them across all `.html` files.
 
 | Placeholder | Where | Replace with |
 |---|---|---|
-| `+92 300 1234567` / `+923001234567` | top bar, footer, contact page | Your real phone number |
 | `info@leaderdigitalmedia.com` | throughout | Your real email address |
 | `support@leaderdigitalmedia.com` | contact page, footer | Your real support email |
 | `https://www.leaderdigitalmedia.com` | canonical tags, `sitemap.xml`, `robots.txt` | Your real domain |
@@ -46,8 +45,15 @@ These are stand-in values. Search and replace them across all `.html` files.
 Example, from this folder:
 
 ```bash
-# replace the phone number everywhere
-sed -i '' 's/+92 300 1234567/+92 21 1234567/g; s/+923001234567/+92211234567/g' *.html
+# replace the email address everywhere
+sed -i '' 's/info@leaderdigitalmedia.com/your@realdomain.com/g' *.html
+```
+
+The phone number is already set to **+92 326 0343607** (shown as `+92 326 0343607`,
+linked as `tel:+923260343607`). To change it later, replace both forms:
+
+```bash
+sed -i '' 's/+92 326 0343607/+92 XXX XXXXXXX/g; s/+923260343607/+92XXXXXXXXX/g' *.html
 ```
 
 ### Sample content to replace with your own
