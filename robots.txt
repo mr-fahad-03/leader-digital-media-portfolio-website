@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /404.html
 
-Sitemap: https://www.leaderdigitalmedia.com/sitemap.xml
+Sitemap: https://leaderdigitalmedia.vercel.app/sitemap.xml

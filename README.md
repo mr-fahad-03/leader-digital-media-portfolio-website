@@ -38,7 +38,6 @@ These are stand-in values. Search and replace them across all `.html` files.
 |---|---|---|
 | `info@leaderdigitalmedia.com` | throughout | Your real email address |
 | `support@leaderdigitalmedia.com` | contact page, footer | Your real support email |
-| `https://www.leaderdigitalmedia.com` | canonical tags, `sitemap.xml`, `robots.txt` | Your real domain |
 | `href="#"` on social icons | header + footer | Your Facebook / Instagram / LinkedIn / YouTube URLs |
 | Office hours (Mon–Sat, 10:00–19:00) | top bar, footer, contact | Your actual hours |
 
@@ -123,15 +122,24 @@ vercel          # preview deployment
 vercel --prod   # production deployment
 ```
 
-### After the first deploy
+### Site URL
 
-1. Add your custom domain under **Project → Settings → Domains**.
-2. Update the domain in these files, which currently use a placeholder
-   (`https://www.leaderdigitalmedia.com`):
-   - the `<link rel="canonical">` and `og:url` tags in every `.html` file
-   - `sitemap.xml`
-   - `robots.txt`
-3. Submit `sitemap.xml` through Google Search Console.
+The site is live at **https://leaderdigitalmedia.vercel.app**, and that URL is set as the
+canonical address in every `<link rel="canonical">` and `og:url` tag, in the Organization
+schema, in `sitemap.xml` and in `robots.txt`.
+
+When you buy a custom domain, add it under **Project → Settings → Domains** in Vercel, then
+switch every reference in one command:
+
+```bash
+sed -i '' 's|https://leaderdigitalmedia.vercel.app|https://www.yourdomain.com|g' *.html sitemap.xml robots.txt
+```
+
+Getting this wrong matters: if the canonical tags name a domain the site is not served from,
+Google treats the live pages as duplicates of an address that does not exist and will not
+index them.
+
+Afterwards, submit `sitemap.xml` through Google Search Console.
 
 ### Google Search Console
 
